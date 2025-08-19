@@ -8,14 +8,12 @@ This project was written to help you download and install the “Paper” server
 
 Since it is a completely open source project, you can use it without fear and enjoy yourself. :)
 
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
   
 ## Warning!
 
 The “start.sh” file is designed to run only on Linux. If you are using the Windows operating system, simply use the necessary “.bat” extension launcher code available online.
 
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
   
