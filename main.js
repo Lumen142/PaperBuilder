@@ -1,10 +1,8 @@
 
 const child_process = require('child_process')
-const https = require("https")
 const fs = require("fs")
 const readline = require("readline")
 const { stdout, stdin } = require('process')
-const { type } = require('os')
 
 const package = fs.readFileSync("package-lock.json", "utf-8")
 const packageJSON = JSON.parse(package)
@@ -33,7 +31,7 @@ console.log(
 
 const rl = readline.createInterface({ input : stdin, output : stdout })
 
-rl.question("Sürüm? : ", (answer) => {
+rl.question("Version? : ", (answer) => {
 
     if ( obj.versions[answer] ) {
 
