@@ -55,6 +55,10 @@ rl.question("Version? : ", (answer) => {
                     
                     let p1 = child_process.spawn("wget", ["-O","server.jar",obj.versions[answer]], {cwd : `./${serverName}`})
 
+                    p1.stderr.on('data', (data) => {
+                        console.error(`Downloading... ${data}`);
+                    });
+
                     p1.on("close", function() {
                         console.log("Downloaded!")
 
