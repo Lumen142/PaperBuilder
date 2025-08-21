@@ -8,7 +8,7 @@ The software is completely open source. Its rights are protected by the MIT lice
 
 ## Usage
 
-```http
+```javascript
   node main.js [<version>] [<path>]
 ```
 
