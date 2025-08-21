@@ -48,8 +48,6 @@ if ( args.length == 2 ) {
                     p1.on("close", function () {
                         console.log("Downloaded!")
 
-                        child_process.spawn("> start.sh", [], { cwd: `${args[1]}/${serverName}`, shell: true });
-
                         fs.writeFile(`${args[1]}/${serverName}/start.sh`,
                             `
                             java -Xms2G -Xmx2G -jar server.jar nogui
@@ -67,29 +65,15 @@ if ( args.length == 2 ) {
 
                                     rl.question(`Do you accept eula.txt? (https://aka.ms/MinecraftEULA)\nYes:1\nNo:2\nanswer(default:1): `, answer => {
                                         if (answer == "1" || answer != "2") {
-                                            child_process.spawn("> eula.txt", [], { cwd : `${args[1]}/${serverName}`, shell: true })
-
-                                            fs.writeFile(`${args[1]}/${serverName}/eula.txt`, `
-                                                    #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://aka.ms/MinecraftEULA).
-                                                    #Thu Aug 21 05:07:58 TRT 2025
-                                                    eula=true
-                                                    `, (err) => {
-                                                if (err) throw err;
+                                            fs.writeFile(`${args[1]}/${serverName}/eula.txt`,`eula=true`, (err) => { 
+                                                if (err) {
+                                                    console.log("[ERROR] : " + err)
+                                                } else {
+                                                    console.log("EULA accepted.")
+                                                    child_process.spawn(`x-terminal-emulator`, ["-e","bash","-c",'"bash ./start.sh; exec bash"'], { cwd : `../${serverName}/`, shell : true})
+                                                    process.exit()
+                                                }
                                             })
-
-                                            let p1 = child_process.spawn(`x-terminal-emulator`, ["-e","bash","-c",'"bash ./start.sh; exec bash"'], { cwd : `../${serverName}/`, shell : true})
-
-                                            p1.on("close", (code) => {
-                                                console.log(`
-                                                    
-                                                    PaperBuilder
-                                                        By Lumen142
-
-                                                    Thank you for supporting us by using PaperBuilder. :)
-
-                                                    `)
-                                            })
-                                            process.exit()
                                         } else {
                                             console.log("Unfortunately, we cannot continue with the automatic installation without accepting the EULA. :(")
                                             process.exit()
