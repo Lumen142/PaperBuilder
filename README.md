@@ -41,6 +41,6 @@ It is not 100% compatible with the Windows operating system. For example, automa
   
 ## Lisans
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[Apache]([https://choosealicense.com/licenses/mit/](http://www.apache.org/licenses/))
 
   
