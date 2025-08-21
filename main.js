@@ -32,7 +32,7 @@ if ( args.length == 2 ) {
     if (version) {
 
         rl.question(`If there is a file named “MinecraftServer” at the specified location, it will be deleted. Do you agree?\nYes : 1\nNo : 2\nanswer(default:1) : `, answer => {
-            if (answer == "1" || answer == "") {
+            if (answer == "1" || answer != "2") {
                 console.log("Your transactions are being processed...")
                 child_process.spawn("rm", ["-r",serverName], {cwd : args[1]})
                 
@@ -62,11 +62,11 @@ if ( args.length == 2 ) {
 
                         setTimeout(() => {
                             rl.question(`Shall we perform an automatic installation?\nYes: 1\nNo: 2\nanswer(default:1): `, answer => {
-                                if (answer == "1" || answer == "") {
+                                if (answer == "1" || answer != "2") {
                                     child_process.spawn("clear")
 
-                                    rl.question(`Do you accept eula.txt? (https://aka.ms/MinecraftEULA)\nYes:1\nNo:2\nanswer: `, answer => {
-                                        if (answer == "1" || answer == "") {
+                                    rl.question(`Do you accept eula.txt? (https://aka.ms/MinecraftEULA)\nYes:1\nNo:2\nanswer(default:1): `, answer => {
+                                        if (answer == "1" || answer != "2") {
                                             child_process.spawn("> eula.txt", [], { cwd : `${args[1]}/${serverName}`, shell: true })
 
                                             fs.writeFile(`${args[1]}/${serverName}/eula.txt`, `
