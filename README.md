@@ -8,8 +8,6 @@ The software is completely open source. Its rights are protected by the MIT lice
 
 ## Usage
 
-#### Tüm öğeleri getir
-
 ```http
   node main.js [<version>] [<path>]
 ```
