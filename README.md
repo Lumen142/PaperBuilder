@@ -39,8 +39,3 @@ Yes, the project was written and tested on Linux. It is 100% compatible with Lin
 It is not 100% compatible with the Windows operating system. For example, automatic installation does not work on Windows. Or the automatically generated “start.sh” file is not in a format suitable for Windows.
 
   
-## Lisans
-
-[Apache]([https://choosealicense.com/licenses/mit/](http://www.apache.org/licenses/))
-
-  
