@@ -4,7 +4,7 @@
 
 The purpose of this software is to quickly set up your Minecraft servers with the “Paper” server software.
 
-The software is completely open source. Its rights are protected by the MIT license.
+The software is completely open source. Its rights are protected under the Apache-2.0 license.
 
 
 ## Usage
