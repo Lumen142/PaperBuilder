@@ -23,10 +23,6 @@ The software is completely open source. Its rights are protected by the MIT lice
 | :-------- |  :-------------------------------- |
 | `versions`      |  You will see all the “Paper” versions you can download. |
 
-#### add(num1, num2)
-
-İki sayı alır ve toplamı döndürür.
-
   
 ## FAQ
 
