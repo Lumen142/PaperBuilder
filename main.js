@@ -3,6 +3,7 @@ const fileCreator = require("./packages/FileCreator.js");
 const paperDownloader = require("./packages/PaperDownloader.js");
 
 const fs = require("fs");
+const { encode } = require("punycode");
 const versions = JSON.parse(fs.readFileSync("./versions.json"));
 
 let questionAnswers = {
@@ -26,6 +27,17 @@ questionService.Question("input", "answer", "Server Folder Name?")
 
                             fileCreator.newServerFile(questionAnswers.serverName, questionAnswers.path);
                             fileCreator.newEULA(questionAnswers.path + "/" + questionAnswers.serverName);
+
+                            fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/eula.txt",
+                                `
+                                #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://aka.ms/MinecraftEULA).
+                                #Fri Jan 23 20:25:58 TRT 2026
+                                eula=true
+                                `,
+                                "utf-8"
+                            );
+
+                            fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/run.bat","java -Xms2G -Xmx4G -jar " + "paper-" + questionAnswers.version + ".jar nogui");
 
                             paperDownloader.downloadPaper(questionAnswers.version, questionAnswers.path + "/" + questionAnswers.serverName);
 

@@ -4,7 +4,7 @@ const fs = require("fs");
 const versions = JSON.parse(fs.readFileSync("./versions.json"));
 
 function downloadPaper(version, path) {
-    const dl = new DownloaderHelper(versions.versions[version], path);
+    const dl = new DownloaderHelper(versions.versions[version], path, { fileName: `paper-${version}.jar` });
 
     dl.on("end", () => {
         console.log("Download completed!");
