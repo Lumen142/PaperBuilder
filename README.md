@@ -1,6 +1,5 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
+<img width="885" height="183" alt="image" src="https://github.com/user-attachments/assets/50ae0478-127f-4d39-8f01-5daa2f614ad3" />
     
 # PaperBuilder V1.0.0
 
