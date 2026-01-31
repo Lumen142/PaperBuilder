@@ -39,6 +39,7 @@ setTimeout(() => {
                         questionService.Question("input", "answer", "Path?").then(value => {
                             
                             if (fs.existsSync(value)) {
+                                questionAnswers.path = value;
 
                                 questionService.Question("scale", "answer", "TEST", [
                                     {
@@ -47,30 +48,28 @@ setTimeout(() => {
                                     initial: 3
                                     }]).then(value => {
                                 
-                                questionAnswers.max_memory = (value.answer + 1).toString()
+                                    questionAnswers.max_memory = (value.answer + 1).toString()
 
-                                questionAnswers.path = value;
+                                    fileCreator.newServerFile(questionAnswers.serverName, questionAnswers.path);
+                                    fileCreator.newEULA(questionAnswers.path + "/" + questionAnswers.serverName);
 
-                                fileCreator.newServerFile(questionAnswers.serverName, questionAnswers.path);
-                                fileCreator.newEULA(questionAnswers.path + "/" + questionAnswers.serverName);
+                                    fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/eula.txt",
+                                        `
+                                        #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://aka.ms/MinecraftEULA).
+                                        #Fri Jan 23 20:25:58 TRT 2026
+                                        eula=true
+                                        `,
+                                        "utf-8"
+                                    );
 
-                                fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/eula.txt",
-                                    `
-                                    #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://aka.ms/MinecraftEULA).
-                                    #Fri Jan 23 20:25:58 TRT 2026
-                                    eula=true
-                                    `,
-                                    "utf-8"
-                                );
+                                    fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/run.bat", `java -Xms2G -Xmx${questionAnswers.max_memory}G -jar + paper-${questionAnswers.version}.jar nogui`);
 
-                                fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/run.bat", `java -Xms2G -Xmx${questionAnswers.max_memory}G -jar + paper-${questionAnswers.version}.jar nogui`);
-
-                                paperDownloader.downloadPaper(questionAnswers.version, questionAnswers.path + "/" + questionAnswers.serverName).then(() => {
-                                    console.log(`
-                                        Server software: https://papermc.io/
-                                        If you want to add a plugin: https://www.spigotmc.org/resources/categories/spigot.4/
-                                    `)
-                                })
+                                    paperDownloader.downloadPaper(questionAnswers.version, questionAnswers.path + "/" + questionAnswers.serverName).then(() => {
+                                        console.log(`
+                                            Server software: https://papermc.io/
+                                            If you want to add a plugin: https://www.spigotmc.org/resources/categories/spigot.4/
+                                        `)
+                                    })
 
                                 })
 
