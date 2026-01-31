@@ -1,4 +1,4 @@
-const { prompt, select, confirm } = require('enquirer');
+const { prompt, select, confirm, scale } = require('enquirer');
 
 async function enquirerFuncs(type, name, message, choices=[]) {
   let funcs = {}
@@ -33,6 +33,26 @@ async function enquirerFuncs(type, name, message, choices=[]) {
     return response;
   }
 
+  funcs.Scale = async () => { // Specifically for memory selection.
+    const response = await scale({
+      name : name,
+      message : message,
+
+      scale : [
+        { name: '1 GB'},
+        { name: '2 GB'},
+        { name: '3 GB'},
+        { name: '4 GB'},
+        { name: '5 GB'},
+        { name: '6 GB'}
+      ],
+
+      choices : choices
+    })
+
+    return response;
+  }
+
   return funcs;
 }
 
@@ -47,6 +67,9 @@ async function Question(type, name, message, choices = []) {
     return answer;
   } else if (type == "confirm") {
     const answer = await enquirer.Confirm();
+    return answer;
+  } else if (type == "scale") {
+    const answer = await enquirer.Scale();
     return answer;
   }
 }
