@@ -62,7 +62,7 @@ setTimeout(() => {
                                         "utf-8"
                                     );
 
-                                    fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/run.bat", `java -Xms2G -Xmx${questionAnswers.max_memory}G -jar + paper-${questionAnswers.version}.jar nogui`);
+                                    fs.writeFileSync(questionAnswers.path + "/" + questionAnswers.serverName + "/run.bat", `java -Xms2G -Xmx${questionAnswers.max_memory}G -jar paper-${questionAnswers.version}.jar nogui`);
 
                                     paperDownloader.downloadPaper(questionAnswers.version, questionAnswers.path + "/" + questionAnswers.serverName).then(() => {
                                         console.log(`
